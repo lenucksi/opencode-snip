@@ -253,14 +253,27 @@ describe("toolExecuteBefore", () => {
 describe("hasSnipSubcommands", () => {
   it("should return true when snip check succeeds", async () => {
     const mock$ = ((...args: any[]) => ({
-      quiet: async () => ({ exitCode: 0 })
+      nothrow: () => ({
+        quiet: async () => ({ exitCode: 0 })
+      })
     })) as any
     expect(await hasSnipSubcommands(mock$)).toBe(true)
   })
 
-  it("should return false when snip check fails", async () => {
+  it("should return true even when snip check exits non-zero (filter exists, cmd has no filter)", async () => {
     const mock$ = ((...args: any[]) => ({
-      quiet: async () => { throw new Error("not found") }
+      nothrow: () => ({
+        quiet: async () => ({ exitCode: 1 })
+      })
+    })) as any
+    expect(await hasSnipSubcommands(mock$)).toBe(true)
+  })
+
+  it("should return false when snip check subcommand is missing", async () => {
+    const mock$ = ((...args: any[]) => ({
+      nothrow: () => ({
+        quiet: async () => { throw new Error("not found") }
+      })
     })) as any
     expect(await hasSnipSubcommands(mock$)).toBe(false)
   })

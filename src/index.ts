@@ -89,7 +89,7 @@ export function createToolExecuteBefore(shouldWrap: (cmd: string) => Promise<boo
 
 export async function hasSnipSubcommands($: any): Promise<boolean> {
   try {
-    await $`snip check -- ls`.quiet()
+    await $`snip check -- ls`.nothrow().quiet()
     return true
   } catch {
     return false
