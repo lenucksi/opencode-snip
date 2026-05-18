@@ -1,0 +1,22 @@
+src/index.test.ts
+  s_766c199dabd6a1::t_5bf3c4daf88fdc 2-4,17,23,29,35,41-42,47,53-54,59,65,71,77,84,88-94,97-102,105-110,113-118,121-126,133-134,139-140,145-146,151-152,159-160,165-166,171-172,177-178,183-184,189-190,229-230,235,241-242,247-248,251-267
+src/index.ts
+  s_766c199dabd6a1::t_c31cae58a21844 90-98,107-110
+  s_766c199dabd6a1::t_a7e9c45dd3397a 117
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.9",
+  "base_commit_sha": "882fa4bba6394b32ab6278d47b37cf5c3be8bdd9",
+  "prompts": {},
+  "sessions": {
+    "s_766c199dabd6a1": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_1c4d9c8b9ffeRWL9Q45r7MSYp2",
+        "model": "big-pickle"
+      },
+      "human_author": "Lenucksi <lenucksi@users.noreply.github.com>"
+    }
+  }
+}
