@@ -7,6 +7,7 @@ async function snipCommand(command: string, shouldWrap: (cmd: string) => Promise
   const envPrefix = (command.match(ENV_VAR_RE) ?? [""])[0]
   const bareCmd = command.slice(envPrefix.length).trim()
   if (!bareCmd) return command
+  if (bareCmd.startsWith("snip ")) return command
   if (await shouldWrap(bareCmd)) {
     return `${envPrefix}snip run -- ${bareCmd}`
   }
