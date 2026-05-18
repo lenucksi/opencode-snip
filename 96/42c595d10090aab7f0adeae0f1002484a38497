@@ -1,0 +1,34 @@
+src/index.ts
+  s_766c199dabd6a1::t_bac32240b9c083 10
+src/index.test.ts
+  s_356a4ec71d1bd0::t_e01fb68e0b382a 220,226
+  s_766c199dabd6a1::t_42f5b6158ea0ca 261-275,277,279-281,283,285-286
+  s_766c199dabd6a1::t_0d041e2a329aca 276,278,282,284
+  s_356a4ec71d1bd0::t_9b3ffd60aed7b0 196,202,208,214
+  s_356a4ec71d1bd0::t_9fd750d64abbb5 71
+  s_356a4ec71d1bd0::t_da3a54013252d3 170,176,182,188
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.8",
+  "base_commit_sha": "9642c595d10090aab7f0adeae0f1002484a38497",
+  "prompts": {},
+  "sessions": {
+    "s_356a4ec71d1bd0": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_1c5688d14ffe6C1v1jpqZPOY4l",
+        "model": "big-pickle"
+      },
+      "human_author": "Lenucksi <lenucksi@users.noreply.github.com>"
+    },
+    "s_766c199dabd6a1": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_1c4d9c8b9ffeRWL9Q45r7MSYp2",
+        "model": "big-pickle"
+      },
+      "human_author": "Lenucksi <lenucksi@users.noreply.github.com>"
+    }
+  }
+}
