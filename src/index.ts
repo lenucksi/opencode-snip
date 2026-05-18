@@ -87,6 +87,15 @@ export function createToolExecuteBefore(shouldWrap: (cmd: string) => Promise<boo
   }
 }
 
+export async function hasSnipSubcommands($: any): Promise<boolean> {
+  try {
+    await $`snip check -- ls`.quiet()
+    return true
+  } catch {
+    return false
+  }
+}
+
 export const SnipPlugin: Plugin = async ({ $, client }) => {
   try {
     await $`which snip`.quiet()
@@ -95,10 +104,17 @@ export const SnipPlugin: Plugin = async ({ $, client }) => {
     return {}
   }
 
+  if (!(await hasSnipSubcommands($))) {
+    await client.log({ level: "warn",
+      message: "[snip] snip >= 0.16.0 required (snip check/run subcommands missing) — plugin disabled"
+    }).catch(() => {})
+    return {}
+  }
+
   const shouldWrap = async (cmd: string): Promise<boolean> => {
     try {
       const words = cmd.split(/\s+/)
-      const result = await $`snip check -- ${words.map(w => ({raw: w}))}`.nothrow().quiet()
+      const result = await $`snip check -- ${words}`.nothrow().quiet()
       return result.exitCode === 0
     } catch (err) {
       await client.log({ level: "warn", message: `[snip] snip check failed for ${cmd}`, extra: { error: String(err) } }).catch(() => {})
