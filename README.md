@@ -39,6 +39,12 @@ The plugin uses the `tool.execute.before` hook to prefix all commands with `snip
 
 ## Development
 
+```bash
+npm ci                    # install dependencies (matches CI)
+npm run typecheck         # TypeScript type checking (CI step 1)
+npm test                  # run tests with vitest (CI step 2)
+```
+
 This package uses [semantic-release](https://semantic-release.gitbook.io/) for automated releases. Commit messages should follow the [Conventional Commits](https://www.conventionalcommits.org/) format:
 
 - `fix:` → patch release

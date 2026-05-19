@@ -100,13 +100,13 @@ export const SnipPlugin: Plugin = async ({ $, client }) => {
   try {
     await $`which snip`.quiet()
   } catch {
-    await client.log({ level: "warn", message: "[snip] snip binary not found in PATH — plugin disabled" }).catch(() => {})
+    await client.app.log({ body: { service: "snip", level: "warn", message: "[snip] snip binary not found in PATH — plugin disabled" } }).catch(() => {})
     return {}
   }
 
   if (!(await hasSnipSubcommands($))) {
-    await client.log({ level: "warn",
-      message: "[snip] snip >= 0.16.0 required (snip check/run subcommands missing) — plugin disabled"
+    await client.app.log({ body: { service: "snip", level: "warn",
+      message: "[snip] snip >= 0.16.0 required (snip check/run subcommands missing) — plugin disabled" }
     }).catch(() => {})
     return {}
   }
@@ -117,7 +117,7 @@ export const SnipPlugin: Plugin = async ({ $, client }) => {
       const result = await $`snip check -- ${words}`.nothrow().quiet()
       return result.exitCode === 0
     } catch (err) {
-      await client.log({ level: "warn", message: `[snip] snip check failed for ${cmd}`, extra: { error: String(err) } }).catch(() => {})
+      await client.app.log({ body: { service: "snip", level: "warn", message: `[snip] snip check failed for ${cmd}`, extra: { error: String(err) } } }).catch(() => {})
       return false
     }
   }
