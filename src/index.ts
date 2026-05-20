@@ -128,6 +128,12 @@ export const SnipPlugin: Plugin = async ({ $, client }) => {
 
   return {
     "tool.execute.before": createToolExecuteBefore(shouldWrap),
+    "experimental.chat.system.transform": async (_input, output) => {
+      output.system.push(
+        "The snip plugin automatically prefixes eligible commands with `snip run --`. "
+        + "Do NOT manually add `snip run --` to commands."
+      )
+    },
   }
 }
 
