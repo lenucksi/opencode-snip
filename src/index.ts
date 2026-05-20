@@ -114,7 +114,11 @@ export const SnipPlugin: Plugin = async ({ $, client }) => {
   const shouldWrap = async (cmd: string): Promise<boolean> => {
     try {
       const words = cmd.split(/\s+/)
-      const result = await $`snip check -- ${words}`.nothrow().quiet()
+      const w0 = {raw: words[0]}
+      const w1 = words.length > 1 ? {raw: words[1]} : undefined
+      const result = w1 !== undefined
+        ? await $`snip check -- ${w0} ${w1}`.nothrow().quiet()
+        : await $`snip check -- ${w0}`.nothrow().quiet()
       return result.exitCode === 0
     } catch (err) {
       await client.app.log({ body: { service: "snip", level: "warn", message: `[snip] snip check failed for ${cmd}`, extra: { error: String(err) } } }).catch(() => {})
